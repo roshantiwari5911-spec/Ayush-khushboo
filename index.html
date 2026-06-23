@@ -334,11 +334,7 @@
             <h2 class="section-title">Will You Attend?</h2>
             <p class="section-subtitle">Kindly RSVP by November 15, 2026</p>
 
-            <!-- 
-               NOTE FOR BACKEND: 
-               Replace the action attribute below with your Formspree link or Google Form processing endpoint 
-            -->
-            <form class="rsvp-form" action="#" method="POST">
+            <form class="rsvp-form" id="wedding-rsvp-form">
                 <div class="form-group">
                     <label for="name">Your Name(s)</label>
                     <input type="text" id="name" name="name" placeholder="Enter full name" required>
@@ -381,6 +377,39 @@
     <footer>
         <p>#AyushGotKhush | Created with ♥ for Ayush & Khushboo</p>
     </footer>
+
+    <!-- RSVP FORM HANDLING SCRIPT -->
+    <script>
+        const form = document.getElementById('wedding-rsvp-form');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents page reload
+            
+            // IMPORTANT: Replace the string below with your Web App URL from Step 3
+            const scriptURL = 'PASTE_YOUR_COPIED_WEB_APP_URL_HERE';
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form)
+            })
+            .then(response => {
+                submitBtn.innerText = "Thank You!";
+                alert("Thank you! Your RSVP has been successfully received.");
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Submission Error!', error.message);
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+                alert("Oops, something went wrong. Please try submitting again.");
+            });
+        });
+    </script>
 
     <!-- COUNTDOWN SCRIPT -->
     <script>
