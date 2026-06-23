@@ -15,7 +15,7 @@
             --accent-color: #d4af37;  /* Classic Gold */
             --text-dark: #2c3e50;
             --text-light: #f9f9f9;
-            --bg-soft: #fdfbf7;
+            --bg-soft: #eef7fc;       /* Soft sky blue backdrop matching image_41a00b.jpg */
         }
 
         * {
@@ -31,6 +31,7 @@
             line-height: 1.6;
             text-align: center;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .brand {
@@ -39,6 +40,7 @@
 
         section {
             padding: 4rem 1.2rem;
+            position: relative;
         }
 
         .container {
@@ -46,7 +48,7 @@
             margin: 0 auto;
         }
 
-        /* --- Music Control Floating Button --- */
+        /* --- Floating Music Controls --- */
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -67,12 +69,8 @@
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
         }
-        .music-control:hover {
-            transform: scale(1.05);
-            background: var(--primary-color);
-        }
 
-        /* --- Ghibli Art Animated Hero Section --- */
+        /* --- Hero Section with Ghibli Pan --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -85,30 +83,16 @@
             overflow: hidden;
         }
 
-        /* Background Image Layer with subtle Ghibli-style zoom animation */
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Default placeholder: Beautiful anime/Ghibli style couple backdrop */
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.45)), 
                         url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920') no-repeat center center/cover;
             z-index: -2;
             animation: ghibliZoom 20s infinite alternate ease-in-out;
-        }
-
-        /* Falling magical cherry blossoms / sparkles animation overlay */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: -1;
-            pointer-events: none;
         }
 
         @keyframes ghibliZoom {
@@ -121,7 +105,6 @@
             color: var(--accent-color);
             margin-bottom: 0.5rem;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            line-height: 1.2;
         }
 
         .hero p {
@@ -133,7 +116,7 @@
             text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
 
-        /* --- Countdown Timer --- */
+        /* --- Countdown --- */
         .countdown {
             display: flex;
             gap: 0.8rem;
@@ -145,14 +128,6 @@
             width: 100%;
             max-width: 340px;
             justify-content: space-around;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 55px;
         }
 
         .countdown-item span {
@@ -164,79 +139,219 @@
         .countdown-item label {
             font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-top: 0.2rem;
+            display: block;
             opacity: 0.8;
         }
 
-        /* --- Section Titles --- */
+        /* --- Section Header Layout --- */
         .section-title {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-size: clamp(2.8rem, 6vw, 3.8rem);
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
+            margin-bottom: 0.3rem;
         }
 
         .section-subtitle {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #7f8c8d;
-            margin-bottom: 2.5rem;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 3rem;
         }
 
-        /* --- Events Grid --- */
-        .events-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
+        /* --- 3D COVERFLOW CAROUSEL SYSTEM --- */
+        .carousel-view {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 520px; /* Accommodates the vertical phone aspect ratio cards */
+            perspective: 1000px; /* Gives the 3D depth perspective */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @media (min-width: 768px) {
-            .events-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
         }
 
-        .event-card {
+        .carousel-card {
+            position: absolute;
+            width: 290px;
+            height: 440px;
+            left: 50%;
+            top: 50%;
+            margin-left: -145px;
+            margin-top: -220px;
+            border-radius: 20px;
             background: #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 6px solid rgba(212, 175, 55, 0.3); /* Subtle golden card ring matching screenshot */
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, z-index 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             padding: 2rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-            border-top: 4px solid var(--primary-color);
-            transition: transform 0.3s ease;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        .event-card h3 {
+        /* Text background overlay strip inside cards */
+        .card-content {
+            background: linear-gradient(to top, rgba(255,255,255,0.95) 75%, rgba(255,255,255,0));
+            padding: 1.5rem 1rem 0.5rem 1rem;
+            border-radius: 0 0 14px 14px;
+            margin: -1.5rem;
+            z-index: 2;
+        }
+
+        .card-content h3 {
             font-size: 2.2rem;
             color: var(--primary-color);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.2rem;
         }
 
-        .event-details {
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-            text-align: left;
-            max-width: 260px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .event-details p {
-            margin: 0.4rem 0;
-            word-break: break-word;
-        }
-
-        .dress-code {
-            font-style: italic;
-            color: #555;
+        .card-date {
             font-size: 0.85rem;
-            border-top: 1px dashed #ddd;
-            padding-top: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
 
-        /* --- RSVP Form --- */
+        .card-venue {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-dress {
+            font-style: italic;
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            border-top: 1px dashed #ddd;
+            padding-top: 0.5rem;
+        }
+
+        /* --- 3D Layering Logic Managed dynamically via classes --- */
+        .carousel-card.active {
+            transform: translate3d(0, 0, 100px) scale(1);
+            opacity: 1;
+            z-index: 10;
+            border-color: rgba(212, 175, 55, 0.9); /* Fully highlighted gold border */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+        }
+
+        .carousel-card.prev {
+            transform: translate3d(-160px, 0, 0) rotateY(25deg) scale(0.85);
+            opacity: 0.45;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .carousel-card.next {
+            transform: translate3d(160px, 0, 0) rotateY(-25deg) scale(0.85);
+            opacity: 0.45;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Hide cards further out on small phone viewports to avoid side clipping */
+        .carousel-card.hidden-left {
+            transform: translate3d(-280px, 0, -100px) rotateY(35deg) scale(0.7);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .carousel-card.hidden-right {
+            transform: translate3d(280px, 0, -100px) rotateY(-35deg) scale(0.7);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* Mobile specific spacing modifications */
+        @media (max-width: 480px) {
+            .carousel-card.prev { transform: translate3d(-105px, 0, 0) rotateY(20deg) scale(0.8); opacity: 0.35; }
+            .carousel-card.next { transform: translate3d(105px, 0, 0) rotateY(-20deg) scale(0.8); opacity: 0.35; }
+            .carousel-view { height: 480px; }
+        }
+
+        /* --- Navigation Controls Layout --- */
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .nav-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: var(--text-dark);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+            background-color: #f0f0f0;
+        }
+
+        .indicator-dots {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 24px; /* Extended active bar shape matching image_41a00b.jpg */
+            border-radius: 4px;
+            background: var(--accent-color);
+        }
+
+        /* --- Falling Petals Overlay Decoration --- */
+        .petal {
+            position: absolute;
+            background: #ffb7c5; /* Soft rose pink petal color */
+            border-radius: 150% 0 150% 150%;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: CSSPetalFall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes CSSPetalFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(500px) translateX(80px) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- RSVP Form Layout --- */
         .rsvp-section {
             background-color: #f4eae1;
         }
@@ -271,14 +386,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.3s;
             appearance: none;
             -webkit-appearance: none;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(128, 0, 32, 0.1);
         }
 
         .radio-group {
@@ -289,10 +398,7 @@
         }
 
         @media (min-width: 480px) {
-            .radio-group {
-                flex-direction: row;
-                gap: 2rem;
-            }
+            .radio-group { flex-direction: row; gap: 2rem; }
         }
 
         .radio-group label {
@@ -301,14 +407,11 @@
             align-items: center;
             gap: 0.75rem;
             cursor: pointer;
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
         }
 
         .radio-group input[type="radio"] {
             width: 20px;
             height: 20px;
-            cursor: pointer;
             accent-color: var(--primary-color);
         }
 
@@ -324,16 +427,9 @@
             width: 100%;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 0.5rem;
             box-shadow: 0 4px 12px rgba(128, 0, 32, 0.2);
         }
 
-        .submit-btn:hover {
-            background-color: #5c0017;
-        }
-
-        /* --- Footer --- */
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
@@ -344,80 +440,83 @@
 </head>
 <body>
 
-    <!-- HIDDEN AUDIO PLAYER -->
-    <!-- Replace the src URL with your hosted wedding tune audio file (MP3/M4A) -->
+    <!-- HIDDEN AUDIO -->
     <audio id="wedding-audio" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
     
-    <!-- Floating Audio Controls -->
     <button class="music-control" id="audio-toggle">
         <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
     </button>
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <!-- Animated Background Layer -->
-        <div class="hero-bg" id="hero-bg-layer"></div>
-        <div class="hero-overlay" id="particle-canvas"></div>
-        
+        <div class="hero-bg"></div>
         <h1>Ayush & Khushboo</h1>
         <p>Are getting married</p>
         
-        <!-- COUNTDOWN -->
         <div class="countdown" id="countdown">
-            <div class="countdown-item">
-                <span id="days">00</span>
-                <label>Days</label>
-            </div>
-            <div class="countdown-item">
-                <span id="hours">00</span>
-                <label>Hours</label>
-            </div>
-            <div class="countdown-item">
-                <span id="minutes">00</span>
-                <label>Mins</label>
-            </div>
-            <div class="countdown-item">
-                <span id="seconds">00</span>
-                <label>Secs</label>
-            </div>
+            <div class="countdown-item"><span id="days">00</span><label>Days</label></div>
+            <div class="countdown-item"><span id="hours">00</span><label>Hours</label></div>
+            <div class="countdown-item"><span id="minutes">00</span><label>Mins</label></div>
+            <div class="countdown-item"><span id="seconds">00</span><label>Secs</label></div>
         </div>
     </section>
 
-    <!-- THE WEDDING SCHEDULE -->
-    <section id="events" class="container">
-        <h2 class="section-title">The Wedding Celebrations</h2>
-        <p class="section-subtitle">Join us in our joy</p>
+    <!-- 3D CARD CAROUSEL SECTION -->
+    <section id="events" style="overflow: hidden;">
+        <h2 class="section-title">Wedding Events</h2>
+        <p class="section-subtitle">Flip the cards to know the details</p>
 
-        <div class="events-grid">
-            <div class="event-card">
-                <h3>Sangeet</h3>
-                <div class="event-details">
-                    <p><strong>Date:</strong> December 10, 2026</p>
-                    <p><strong>Time:</strong> 7:00 PM onwards</p>
-                    <p><strong>Venue:</strong> The Grand Ballroom, Heritage Resort</p>
+        <div class="carousel-view">
+            <div class="carousel-track" id="carousel-track">
+                
+                <!-- Card 1 (Add your Ghibli artwork link in the style background asset) -->
+                <div class="carousel-card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500');">
+                    <div class="card-content">
+                        <span class="card-date">10th Dec 2026</span>
+                        <h3>Sangeet</h3>
+                        <p class="card-venue">The Grand Ballroom, Heritage Resort</p>
+                        <p class="card-dress">Dress Code: Indo-Western Glitz</p>
+                    </div>
                 </div>
-                <p class="dress-code">Dress Code: Indo-Western Glitz</p>
-            </div>
 
-            <div class="event-card">
-                <h3>Wedding Ceremony</h3>
-                <div class="event-details">
-                    <p><strong>Date:</strong> December 11, 2026</p>
-                    <p><strong>Time:</strong> 4:00 PM (Muhurtham)</p>
-                    <p><strong>Venue:</strong> Royal Palace Grounds</p>
+                <!-- Card 2 -->
+                <div class="carousel-card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=500');">
+                    <div class="card-content">
+                        <span class="card-date">11th Dec 2026</span>
+                        <h3>Haldi & Mehendi</h3>
+                        <p class="card-venue">Mughal Gardens, Palace Grounds</p>
+                        <p class="card-dress">Dress Code: Sunshine Yellow</p>
+                    </div>
                 </div>
-                <p class="dress-code">Dress Code: Traditional Regal</p>
-            </div>
 
-            <div class="event-card">
-                <h3>Reception</h3>
-                <div class="event-details">
-                    <p><strong>Date:</strong> December 12, 2026</p>
-                    <p><strong>Time:</strong> 8:00 PM onwards</p>
-                    <p><strong>Venue:</strong> Crystal Lawn, Palace Resorts</p>
+                <!-- Card 3 -->
+                <div class="carousel-card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=500');">
+                    <div class="card-content">
+                        <span class="card-date">11th Dec 2026</span>
+                        <h3>Wedding (Phere)</h3>
+                        <p class="card-venue">Royal Palace Main Mandap</p>
+                        <p class="card-dress">Dress Code: Traditional Regal</p>
+                    </div>
                 </div>
-                <p class="dress-code">Dress Code: Formal / Evening Wear</p>
+
+                <!-- Card 4 -->
+                <div class="carousel-card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=500');">
+                    <div class="card-content">
+                        <span class="card-date">12th Dec 2026</span>
+                        <h3>Reception</h3>
+                        <p class="card-venue">Crystal Lawn, Palace Resorts</p>
+                        <p class="card-dress">Dress Code: Formal Evening Wear</p>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
+        <!-- Carousel Navigation UI Controls matching screenshot -->
+        <div class="carousel-controls">
+            <button class="nav-btn" id="prev-btn">⟨</button>
+            <div class="indicator-dots" id="indicator-dots"></div>
+            <button class="nav-btn" id="next-btn">⟩</button>
         </div>
     </section>
 
@@ -432,7 +531,6 @@
                     <label for="name">Your Name(s)</label>
                     <input type="text" id="name" name="name" placeholder="Enter full name" required>
                 </div>
-
                 <div class="form-group">
                     <label>Attendance</label>
                     <div class="radio-group">
@@ -440,7 +538,6 @@
                         <label><input type="radio" name="attendance" value="no"> Regretfully Decline</label>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="guests">Number of Guests attending</label>
                     <select id="guests" name="total_guests">
@@ -450,28 +547,103 @@
                         <option value="4">4 People</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="events-attending">Which events will you attend?</label>
                     <input type="text" id="events-attending" name="events_attending" placeholder="e.g., All events, Sangeet only">
                 </div>
-
                 <div class="form-group">
                     <label for="message">Message for the Couple (Optional)</label>
                     <textarea id="message" name="message" rows="4" placeholder="Send your blessings..."></textarea>
                 </div>
-
                 <button type="submit" class="submit-btn">Submit RSVP</button>
             </form>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p>#AyushGotKhush | Created with ♥ for Ayush & Khushboo</p>
     </footer>
 
-    <!-- BACKGROUND AUDIO SCRIPT -->
+    <!-- 3D CAROUSEL LOGIC ENGINE -->
+    <script>
+        const cards = document.querySelectorAll('.carousel-card');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const dotsContainer = document.getElementById('indicator-dots');
+        let currentIndex = 1; // Default highlight on the second card
+
+        // Build status slider track dots dynamically
+        cards.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if(index === currentIndex) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+        const dots = document.querySelectorAll('.dot');
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
+                
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else if (index === currentIndex - 1) {
+                    card.classList.add('prev');
+                } else if (index === currentIndex + 1) {
+                    card.classList.add('next');
+                } else if (index < currentIndex) {
+                    card.classList.add('hidden-left');
+                } else {
+                    card.classList.add('hidden-right');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) { currentIndex--; updateCarousel(); }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) { currentIndex++; updateCarousel(); }
+        });
+
+        // Tapping directly on side cards focuses them
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+
+        updateCarousel(); // Initial rendering kickstart
+    </script>
+
+    <!-- PETAL DROP FALL MECHANICAL GENERATOR -->
+    <script>
+        function spawnPetal() {
+            const container = document.getElementById('events');
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            petal.style.left = Math.random() * window.innerWidth + 'px';
+            const size = Math.random() * 8 + 6;
+            petal.style.width = size + 'px';
+            petal.style.height = size * 1.2 + 'px';
+            
+            const duration = Math.random() * 3 + 4;
+            petal.style.animationDuration = duration + 's';
+            
+            container.appendChild(petal);
+            setTimeout(() => petal.remove(), duration * 1000);
+        }
+        setInterval(spawnPetal, 900); // Continuous calm particle stream
+    </script>
+
+    <!-- AUDIO SCRIPT -->
     <script>
         const audio = document.getElementById('wedding-audio');
         const audioBtn = document.getElementById('audio-toggle');
@@ -481,36 +653,22 @@
         audioBtn.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play().then(() => {
-                    musicIcon.innerText = "⏸️";
-                    musicText.innerText = "Pause Music";
-                }).catch(err => {
-                    alert("Please interact with the screen first to play music.");
+                    musicIcon.innerText = "⏸️"; musicText.innerText = "Pause Music";
                 });
             } else {
                 audio.pause();
-                musicIcon.innerText = "🎵";
-                musicText.innerText = "Play Music";
+                musicIcon.innerText = "🎵"; musicText.innerText = "Play Music";
             }
         });
-
-        // Smart Interaction Fallback: Tries playing music automatically on first user click anywhere
-        document.body.addEventListener('click', function() {
-            if(audio.paused && musicIcon.innerText === "🎵") {
-                // Remove comment below if you want it to trigger immediately on first screen tap:
-                // audio.play(); musicIcon.innerText = "⏸️"; musicText.innerText = "Pause Music";
-            }
-        }, { once: true });
     </script>
 
-    <!-- RSVP FORM HANDLING SCRIPT -->
+    <!-- RSVP SCRIPT -->
     <script>
         const form = document.getElementById('wedding-rsvp-form');
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
             const scriptURL = 'PASTE_YOUR_COPIED_WEB_APP_URL_HERE';
-            
             const submitBtn = form.querySelector('.submit-btn');
-            const originalText = submitBtn.innerText;
             submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
 
@@ -521,9 +679,9 @@
                 form.reset();
             })
             .catch(error => {
-                submitBtn.innerText = originalText;
+                submitBtn.innerText = "Submit RSVP";
                 submitBtn.disabled = false;
-                alert("Oops, something went wrong. Please try submitting again.");
+                alert("Something went wrong. Please try again.");
             });
         });
     </script>
@@ -531,25 +689,13 @@
     <!-- COUNTDOWN SCRIPT -->
     <script>
         const weddingDate = new Date("December 11, 2026 16:00:00").getTime();
-
-        const timer = setInterval(function() {
+        setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<p style='font-size:1.3rem; color:#d4af37;'>The Celebration Has Begun!</p>";
-            }
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
     </script>
 </body>
