@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayush & Khushboo Wedding</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -30,6 +29,7 @@
             background-color: var(--bg-soft);
             line-height: 1.6;
             text-align: center;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, .brand {
@@ -37,7 +37,7 @@
         }
 
         section {
-            padding: 5rem 1rem;
+            padding: 4rem 1.2rem; /* Optimized spacing for mobile view */
         }
 
         .container {
@@ -45,7 +45,7 @@
             margin: 0 auto;
         }
 
-        /* --- Hero Section --- */
+        /* --- Mobile-Optimized Hero Section --- */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=1920') no-repeat center center/cover;
@@ -55,117 +55,130 @@
             justify-content: center;
             align-items: center;
             color: var(--text-light);
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 3.5rem; /* Dynamic fluid scale for mobile phones */
+            font-size: clamp(2.8rem, 8vw, 5rem); 
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
+            font-size: 1rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* --- Countdown Timer --- */
+        /* --- Mobile-Optimized Countdown Timer --- */
         .countdown {
             display: flex;
-            gap: 1.5rem;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1.5rem 2.5rem;
-            border-radius: 50px;
+            gap: 0.8rem; /* Tightened gap for smaller displays */
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
             border: 1px solid var(--accent-color);
             backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 340px; /* Forces box to stay clean on narrow devices */
+            justify-content: space-around;
         }
 
         .countdown-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-width: 55px;
         }
 
         .countdown-item span {
-            font-size: 2rem;
+            font-size: 1.6rem; /* Scaled down slightly to fit on 360px width screens */
             font-weight: 600;
             color: var(--accent-color);
         }
 
         .countdown-item label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 0.2rem;
+            opacity: 0.8;
         }
 
         /* --- Section Titles --- */
         .section-title {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
         .section-subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #7f8c8d;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* --- Events Cards --- */
+        /* --- Mobile Responsive Events Grid --- */
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr; /* Default to stack cards top-to-bottom on phone */
+            gap: 1.5rem;
             margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .events-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Desktop split */
+            }
         }
 
         .event-card {
             background: #fff;
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
             border-top: 4px solid var(--primary-color);
             transition: transform 0.3s ease;
         }
 
-        .event-card:hover {
-            transform: translateY(-5px);
-        }
-
         .event-card h3 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .event-details {
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
+            text-align: left; /* Easier list reading on mobile devices */
+            max-width: 260px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .event-details p {
-            margin: 0.3rem 0;
+            margin: 0.4rem 0;
+            word-break: break-word;
         }
 
         .dress-code {
             font-style: italic;
             color: #555;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-top: 1px dashed #ddd;
-            padding-top: 1rem;
+            padding-top: 0.8rem;
         }
 
-        /* --- RSVP Form --- */
+        /* --- Mobile Thumb-Friendly RSVP Form --- */
         .rsvp-section {
             background-color: #f4eae1;
         }
@@ -174,9 +187,9 @@
             background: #fff;
             max-width: 600px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.2rem; /* Wider tap room inside margins */
             border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             text-align: left;
         }
 
@@ -186,60 +199,78 @@
 
         .form-group label {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--text-dark);
         }
 
-        .form-group input, .form-group select, .form-group textarea {
+        /* Extra vertical padding added below to fit mobile thumbs comfortably */
+        .form-group input[type="text"], .form-group select, .form-group textarea {
             width: 100%;
-            padding: 0.85rem;
+            padding: 1rem 0.85rem; 
             border: 1px solid #ccc;
-            border-radius: 6px;
+            border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
+            font-size: 1rem; /* Keeping font size at 16px prevent iOS auto-zooming on focus */
             outline: none;
             transition: border-color 0.3s;
+            appearance: none; /* Uniform styling across Safari mobile & Android Chrome */
+            -webkit-appearance: none;
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(128, 0, 32, 0.1);
         }
 
         .radio-group {
             display: flex;
-            gap: 2rem;
+            flex-direction: column; /* Stack choices vertically on phones so they are easy to click */
+            gap: 1rem;
             margin-top: 0.5rem;
+        }
+
+        @media (min-width: 480px) {
+            .radio-group {
+                flex-direction: row; /* Horizontal layout for wide displays */
+                gap: 2rem;
+            }
         }
 
         .radio-group label {
             font-weight: 400;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             cursor: pointer;
+            padding: 0.5rem 0; /* Expanded touch zone */
+            font-size: 0.95rem;
         }
 
-        .radio-group input {
-            width: auto;
+        .radio-group input[type="radio"] {
+            width: 20px;
+            height: 20px; /* Larger hit boxes */
             cursor: pointer;
+            accent-color: var(--primary-color);
         }
 
         .submit-btn {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 1rem 2rem;
+            padding: 1.1rem 2rem; /* Massive target for mobile thumbs */
             font-size: 1rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(128, 0, 32, 0.2);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .submit-btn:hover {
@@ -251,7 +282,7 @@
             background-color: var(--primary-color);
             color: var(--text-light);
             padding: 2rem 1rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         footer p {
@@ -261,12 +292,10 @@
 </head>
 <body>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <h1>Ayush & Khushboo</h1>
         <p>Are getting married</p>
         
-        <!-- COUNTDOWN -->
         <div class="countdown" id="countdown">
             <div class="countdown-item">
                 <span id="days">00</span>
@@ -287,13 +316,11 @@
         </div>
     </section>
 
-    <!-- THE WEDDING SCHEDULE -->
     <section id="events" class="container">
         <h2 class="section-title">The Wedding Celebrations</h2>
         <p class="section-subtitle">Join us in our joy</p>
 
         <div class="events-grid">
-            <!-- Event 1 -->
             <div class="event-card">
                 <h3>Sangeet</h3>
                 <div class="event-details">
@@ -304,7 +331,6 @@
                 <p class="dress-code">Dress Code: Indo-Western Glitz</p>
             </div>
 
-            <!-- Event 2 -->
             <div class="event-card">
                 <h3>Wedding Ceremony</h3>
                 <div class="event-details">
@@ -315,7 +341,6 @@
                 <p class="dress-code">Dress Code: Traditional Regal</p>
             </div>
 
-            <!-- Event 3 -->
             <div class="event-card">
                 <h3>Reception</h3>
                 <div class="event-details">
@@ -328,7 +353,6 @@
         </div>
     </section>
 
-    <!-- RSVP SECTION -->
     <section id="rsvp" class="rsvp-section">
         <div class="container">
             <h2 class="section-title">Will You Attend?</h2>
@@ -373,19 +397,17 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p>#AyushGotKhush | Created with ♥ for Ayush & Khushboo</p>
     </footer>
 
-    <!-- RSVP FORM HANDLING SCRIPT -->
     <script>
         const form = document.getElementById('wedding-rsvp-form');
         
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevents page reload
+            e.preventDefault(); 
             
-            // IMPORTANT: Replace the string below with your Web App URL from Step 3
+            // REMEMBER: Paste your active Google Web App script URL right below
             const scriptURL = 'PASTE_YOUR_COPIED_WEB_APP_URL_HERE';
             
             const submitBtn = form.querySelector('.submit-btn');
@@ -411,31 +433,26 @@
         });
     </script>
 
-    <!-- COUNTDOWN SCRIPT -->
     <script>
-        // Set your target wedding date here
         const weddingDate = new Date("December 11, 2026 16:00:00").getTime();
 
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            // Calculations for days, hours, minutes and seconds
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Output the result to the corresponding elements
             document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
             document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-            // If the countdown is over, display text
             if (distance < 0) {
                 clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:#d4af37;'>The Celebration Has Begun!</p>";
+                document.getElementById("countdown").innerHTML = "<p style='font-size:1.3rem; color:#d4af37;'>The Celebration Has Begun!</p>";
             }
         }, 1000);
     </script>
