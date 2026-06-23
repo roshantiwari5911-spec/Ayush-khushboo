@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush & Khushboo Wedding</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #800020; /* Elegant Burgundy */
+            --accent-color: #d4af37;  /* Classic Gold */
+            --text-dark: #2c3e50;
+            --text-light: #f9f9f9;
+            --bg-soft: #fdfbf7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-soft);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        section {
+            padding: 5rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=1920') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-light);
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Countdown Timer --- */
+        .countdown {
+            display: flex;
+            gap: 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem 2.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--accent-color);
+            backdrop-filter: blur(5px);
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-item span {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .countdown-item label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+        }
+
+        /* --- Events Cards --- */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .event-card {
+            background: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .event-details {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-details p {
+            margin: 0.3rem 0;
+        }
+
+        .dress-code {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px dashed #ddd;
+            padding-top: 1rem;
+        }
+
+        /* --- RSVP Form --- */
+        .rsvp-section {
+            background-color: #f4eae1;
+        }
+
+        .rsvp-form {
+            background: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-group label {
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .radio-group input {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #5c0017;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Ayush & Khushboo</h1>
+        <p>Are getting married</p>
+        
+        <!-- COUNTDOWN -->
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span id="days">00</span>
+                <label>Days</label>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">00</span>
+                <label>Hours</label>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">00</span>
+                <label>Mins</label>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">00</span>
+                <label>Secs</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE WEDDING SCHEDULE -->
+    <section id="events" class="container">
+        <h2 class="section-title">The Wedding Celebrations</h2>
+        <p class="section-subtitle">Join us in our joy</p>
+
+        <div class="events-grid">
+            <!-- Event 1 -->
+            <div class="event-card">
+                <h3>Sangeet</h3>
+                <div class="event-details">
+                    <p><strong>Date:</strong> December 10, 2026</p>
+                    <p><strong>Time:</strong> 7:00 PM onwards</p>
+                    <p><strong>Venue:</strong> The Grand Ballroom, Heritage Resort</p>
+                </div>
+                <p class="dress-code">Dress Code: Indo-Western Glitz</p>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card">
+                <h3>Wedding Ceremony</h3>
+                <div class="event-details">
+                    <p><strong>Date:</strong> December 11, 2026</p>
+                    <p><strong>Time:</strong> 4:00 PM (Muhurtham)</p>
+                    <p><strong>Venue:</strong> Royal Palace Grounds</p>
+                </div>
+                <p class="dress-code">Dress Code: Traditional Regal</p>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="event-card">
+                <h3>Reception</h3>
+                <div class="event-details">
+                    <p><strong>Date:</strong> December 12, 2026</p>
+                    <p><strong>Time:</strong> 8:00 PM onwards</p>
+                    <p><strong>Venue:</strong> Crystal Lawn, Palace Resorts</p>
+                </div>
+                <p class="dress-code">Dress Code: Formal / Evening Wear</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="container">
+            <h2 class="section-title">Will You Attend?</h2>
+            <p class="section-subtitle">Kindly RSVP by November 15, 2026</p>
+
+            <!-- 
+               NOTE FOR BACKEND: 
+               Replace the action attribute below with your Formspree link or Google Form processing endpoint 
+            -->
+            <form class="rsvp-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name(s)</label>
+                    <input type="text" id="name" name="name" placeholder="Enter full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Attendance</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance" value="yes" required> Joyfully Accept</label>
+                        <label><input type="radio" name="attendance" value="no"> Regretfully Decline</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests attending</label>
+                    <select id="guests" name="total_guests">
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="events-attending">Which events will you attend?</label>
+                    <input type="text" id="events-attending" name="events_attending" placeholder="e.g., All events, Sangeet only">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message for the Couple (Optional)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Send your blessings..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit RSVP</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>#AyushGotKhush | Created with ♥ for Ayush & Khushboo</p>
+    </footer>
+
+    <!-- COUNTDOWN SCRIPT -->
+    <script>
+        // Set your target wedding date here
+        const weddingDate = new Date("December 11, 2026 16:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            // Calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result to the corresponding elements
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            // If the countdown is over, display text
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:#d4af37;'>The Celebration Has Begun!</p>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
