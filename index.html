@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayush & Khushboo Wedding</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -37,7 +38,7 @@
         }
 
         section {
-            padding: 4rem 1.2rem; /* Optimized spacing for mobile view */
+            padding: 4rem 1.2rem;
         }
 
         .container {
@@ -45,10 +46,35 @@
             margin: 0 auto;
         }
 
-        /* --- Mobile-Optimized Hero Section --- */
+        /* --- Music Control Floating Button --- */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(128, 0, 32, 0.85);
+            color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        .music-control:hover {
+            transform: scale(1.05);
+            background: var(--primary-color);
+        }
+
+        /* --- Ghibli Art Animated Hero Section --- */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=1920') no-repeat center center/cover;
+            position: relative;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -56,14 +82,45 @@
             align-items: center;
             color: var(--text-light);
             padding: 0 1.5rem;
+            overflow: hidden;
+        }
+
+        /* Background Image Layer with subtle Ghibli-style zoom animation */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Default placeholder: Beautiful anime/Ghibli style couple backdrop */
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.45)), 
+                        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920') no-repeat center center/cover;
+            z-index: -2;
+            animation: ghibliZoom 20s infinite alternate ease-in-out;
+        }
+
+        /* Falling magical cherry blossoms / sparkles animation overlay */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes ghibliZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
         }
 
         .hero h1 {
-            font-size: 3.5rem; /* Dynamic fluid scale for mobile phones */
             font-size: clamp(2.8rem, 8vw, 5rem); 
             color: var(--accent-color);
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
             line-height: 1.2;
         }
 
@@ -73,20 +130,22 @@
             text-transform: uppercase;
             font-weight: 300;
             margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
 
-        /* --- Mobile-Optimized Countdown Timer --- */
+        /* --- Countdown Timer --- */
         .countdown {
             display: flex;
-            gap: 0.8rem; /* Tightened gap for smaller displays */
-            background: rgba(0, 0, 0, 0.5);
+            gap: 0.8rem;
+            background: rgba(0, 0, 0, 0.45);
             padding: 1rem 1.5rem;
             border-radius: 30px;
             border: 1px solid var(--accent-color);
             backdrop-filter: blur(5px);
             width: 100%;
-            max-width: 340px; /* Forces box to stay clean on narrow devices */
+            max-width: 340px;
             justify-content: space-around;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .countdown-item {
@@ -97,7 +156,7 @@
         }
 
         .countdown-item span {
-            font-size: 1.6rem; /* Scaled down slightly to fit on 360px width screens */
+            font-size: 1.6rem;
             font-weight: 600;
             color: var(--accent-color);
         }
@@ -112,7 +171,6 @@
 
         /* --- Section Titles --- */
         .section-title {
-            font-size: 2.8rem;
             font-size: clamp(2.5rem, 6vw, 3.5rem);
             color: var(--primary-color);
             margin-bottom: 0.5rem;
@@ -127,17 +185,17 @@
             margin-bottom: 2.5rem;
         }
 
-        /* --- Mobile Responsive Events Grid --- */
+        /* --- Events Grid --- */
         .events-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Default to stack cards top-to-bottom on phone */
+            grid-template-columns: 1fr;
             gap: 1.5rem;
             margin-top: 2rem;
         }
 
         @media (min-width: 768px) {
             .events-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Desktop split */
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
         }
 
@@ -159,7 +217,7 @@
         .event-details {
             font-size: 0.95rem;
             margin-bottom: 1.2rem;
-            text-align: left; /* Easier list reading on mobile devices */
+            text-align: left;
             max-width: 260px;
             margin-left: auto;
             margin-right: auto;
@@ -178,7 +236,7 @@
             padding-top: 0.8rem;
         }
 
-        /* --- Mobile Thumb-Friendly RSVP Form --- */
+        /* --- RSVP Form --- */
         .rsvp-section {
             background-color: #f4eae1;
         }
@@ -187,7 +245,7 @@
             background: #fff;
             max-width: 600px;
             margin: 0 auto;
-            padding: 2.5rem 1.2rem; /* Wider tap room inside margins */
+            padding: 2.5rem 1.2rem;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             text-align: left;
@@ -205,17 +263,16 @@
             color: var(--text-dark);
         }
 
-        /* Extra vertical padding added below to fit mobile thumbs comfortably */
         .form-group input[type="text"], .form-group select, .form-group textarea {
             width: 100%;
-            padding: 1rem 0.85rem; 
+            padding: 1rem 0.85rem;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem; /* Keeping font size at 16px prevent iOS auto-zooming on focus */
+            font-size: 1rem;
             outline: none;
             transition: border-color 0.3s;
-            appearance: none; /* Uniform styling across Safari mobile & Android Chrome */
+            appearance: none;
             -webkit-appearance: none;
         }
 
@@ -226,14 +283,14 @@
 
         .radio-group {
             display: flex;
-            flex-direction: column; /* Stack choices vertically on phones so they are easy to click */
+            flex-direction: column;
             gap: 1rem;
             margin-top: 0.5rem;
         }
 
         @media (min-width: 480px) {
             .radio-group {
-                flex-direction: row; /* Horizontal layout for wide displays */
+                flex-direction: row;
                 gap: 2rem;
             }
         }
@@ -244,13 +301,13 @@
             align-items: center;
             gap: 0.75rem;
             cursor: pointer;
-            padding: 0.5rem 0; /* Expanded touch zone */
+            padding: 0.5rem 0;
             font-size: 0.95rem;
         }
 
         .radio-group input[type="radio"] {
             width: 20px;
-            height: 20px; /* Larger hit boxes */
+            height: 20px;
             cursor: pointer;
             accent-color: var(--primary-color);
         }
@@ -259,7 +316,7 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 1.1rem 2rem; /* Massive target for mobile thumbs */
+            padding: 1.1rem 2rem;
             font-size: 1rem;
             font-weight: 600;
             letter-spacing: 1px;
@@ -270,7 +327,6 @@
             transition: background-color 0.3s;
             margin-top: 0.5rem;
             box-shadow: 0 4px 12px rgba(128, 0, 32, 0.2);
-            -webkit-tap-highlight-color: transparent;
         }
 
         .submit-btn:hover {
@@ -284,18 +340,29 @@
             padding: 2rem 1rem;
             font-size: 0.85rem;
         }
-
-        footer p {
-            letter-spacing: 1px;
-        }
     </style>
 </head>
 <body>
 
+    <!-- HIDDEN AUDIO PLAYER -->
+    <!-- Replace the src URL with your hosted wedding tune audio file (MP3/M4A) -->
+    <audio id="wedding-audio" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    
+    <!-- Floating Audio Controls -->
+    <button class="music-control" id="audio-toggle">
+        <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
+    </button>
+
+    <!-- HERO SECTION -->
     <section class="hero">
+        <!-- Animated Background Layer -->
+        <div class="hero-bg" id="hero-bg-layer"></div>
+        <div class="hero-overlay" id="particle-canvas"></div>
+        
         <h1>Ayush & Khushboo</h1>
         <p>Are getting married</p>
         
+        <!-- COUNTDOWN -->
         <div class="countdown" id="countdown">
             <div class="countdown-item">
                 <span id="days">00</span>
@@ -316,6 +383,7 @@
         </div>
     </section>
 
+    <!-- THE WEDDING SCHEDULE -->
     <section id="events" class="container">
         <h2 class="section-title">The Wedding Celebrations</h2>
         <p class="section-subtitle">Join us in our joy</p>
@@ -353,6 +421,7 @@
         </div>
     </section>
 
+    <!-- RSVP SECTION -->
     <section id="rsvp" class="rsvp-section">
         <div class="container">
             <h2 class="section-title">Will You Attend?</h2>
@@ -397,17 +466,47 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>#AyushGotKhush | Created with ♥ for Ayush & Khushboo</p>
     </footer>
 
+    <!-- BACKGROUND AUDIO SCRIPT -->
+    <script>
+        const audio = document.getElementById('wedding-audio');
+        const audioBtn = document.getElementById('audio-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicText = document.getElementById('music-text');
+
+        audioBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    musicIcon.innerText = "⏸️";
+                    musicText.innerText = "Pause Music";
+                }).catch(err => {
+                    alert("Please interact with the screen first to play music.");
+                });
+            } else {
+                audio.pause();
+                musicIcon.innerText = "🎵";
+                musicText.innerText = "Play Music";
+            }
+        });
+
+        // Smart Interaction Fallback: Tries playing music automatically on first user click anywhere
+        document.body.addEventListener('click', function() {
+            if(audio.paused && musicIcon.innerText === "🎵") {
+                // Remove comment below if you want it to trigger immediately on first screen tap:
+                // audio.play(); musicIcon.innerText = "⏸️"; musicText.innerText = "Pause Music";
+            }
+        }, { once: true });
+    </script>
+
+    <!-- RSVP FORM HANDLING SCRIPT -->
     <script>
         const form = document.getElementById('wedding-rsvp-form');
-        
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
-            
-            // REMEMBER: Paste your active Google Web App script URL right below
             const scriptURL = 'PASTE_YOUR_COPIED_WEB_APP_URL_HERE';
             
             const submitBtn = form.querySelector('.submit-btn');
@@ -415,17 +514,13 @@
             submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
 
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: new FormData(form)
-            })
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
             .then(response => {
                 submitBtn.innerText = "Thank You!";
                 alert("Thank you! Your RSVP has been successfully received.");
                 form.reset();
             })
             .catch(error => {
-                console.error('Submission Error!', error.message);
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
                 alert("Oops, something went wrong. Please try submitting again.");
@@ -433,6 +528,7 @@
         });
     </script>
 
+    <!-- COUNTDOWN SCRIPT -->
     <script>
         const weddingDate = new Date("December 11, 2026 16:00:00").getTime();
 
